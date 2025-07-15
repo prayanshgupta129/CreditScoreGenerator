@@ -29,6 +29,6 @@ graph TD
     D_Scoring -- Calculated Scores --> E_Output[Output: wallet_scores.csv]
 
     subgraph Data Flow
-        B_Load -- Rename 'userWallet' to 'wallet' --> B1_Extract(Extract 'amount', 'assetPriceUSD' from 'actionData')
-        B1_Extract -- Calculate Transaction USD Value --> B2_Remove(Remove Redundant Columns)
+        B_Load -- "Rename 'userWallet' to 'wallet'" --> B1_Extract("Extract 'amount', 'assetPriceUSD' from 'actionData'")
+        B1_Extract -- "Calculate Transaction USD Value" --> B2_Remove("Remove Redundant Columns")
     end
