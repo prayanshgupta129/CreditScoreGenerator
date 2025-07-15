@@ -11,22 +11,20 @@ The credit scores are distributed across the 0-1000 range. Understanding this di
 Below is a textual representation of the score distribution across 100-point ranges.
 
 ```python
-# Conceptual Python code to generate this distribution (assuming wallet_scores.csv exists)
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Load the generated scores
 wallet_scores_df = pd.read_csv('wallet_scores.csv')
 
-# Define score bins
+
 bins = list(range(0, 1001, 100))
 labels = [f"{i}-{i+99}" for i in range(0, 1000, 100)]
 
-# Categorize scores into bins
 wallet_scores_df['score_range'] = pd.cut(wallet_scores_df['credit_score'], bins=bins, labels=labels, right=False)
 
-# Count wallets in each range
+
 distribution = wallet_scores_df['score_range'].value_counts().sort_index()
 
 print("Wallet Score Distribution:")
@@ -34,13 +32,3 @@ for label, count in distribution.items():
     percentage = (count / len(wallet_scores_df)) * 100
     print(f"{label}: {count} wallets ({percentage:.2f}%)")
 
-# Example for plotting (requires matplotlib)
-# plt.figure(figsize=(10, 6))
-# distribution.plot(kind='bar')
-# plt.title('Distribution of Wallet Credit Scores')
-# plt.xlabel('Score Range')
-# plt.ylabel('Number of Wallets')
-# plt.xticks(rotation=45, ha='right')
-# plt.tight_layout()
-# plt.savefig('score_distribution.png')
-# plt.show()
