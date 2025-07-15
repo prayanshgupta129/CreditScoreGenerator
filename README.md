@@ -23,12 +23,12 @@ The credit scoring system is designed as a one-step script that takes raw transa
 
 ```mermaid
 graph TD
-    A[Raw Aave V2 Transactions (JSON in ZIP)] --> B(Load Data & Initial Preprocessing)
-    B -- Cleaned DataFrame --> C{Feature Engineering: Wallet Aggregation}
-    C -- Wallet-level Behavioral Features --> D(Credit Scoring Logic)
-    D -- Calculated Scores --> E[Output: wallet_scores.csv]
+    A[Raw Aave V2 Transactions (JSON in ZIP)] --> B_Load(Load Data & Initial Preprocessing)
+    B_Load -- Cleaned DataFrame --> C_Features{Feature Engineering: Wallet Aggregation}
+    C_Features -- Wallet-level Behavioral Features --> D_Scoring(Credit Scoring Logic)
+    D_Scoring -- Calculated Scores --> E_Output[Output: wallet_scores.csv]
 
     subgraph Data Flow
-        B -- Rename 'userWallet' to 'wallet' --> B1(Extract 'amount', 'assetPriceUSD' from 'actionData')
-        B1 -- Calculate Transaction USD Value --> B2(Remove Redundant Columns)
+        B_Load -- Rename 'userWallet' to 'wallet' --> B1_Extract(Extract 'amount', 'assetPriceUSD' from 'actionData')
+        B1_Extract -- Calculate Transaction USD Value --> B2_Remove(Remove Redundant Columns)
     end
